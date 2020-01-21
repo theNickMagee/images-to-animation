@@ -1,0 +1,40 @@
+ArrayList<PImage> loadImages = new ArrayList<PImage>();
+int maxLoadImgs = 9;
+PImage img;
+int count;
+int frameRateNum = 5;
+
+void setup(){
+  size(1600, 1600);
+  for (int i = 0; i <= maxLoadImgs; i++){
+    String text = "image" + i + ".png";
+    loadImages.add( loadImage(text));
+  }
+  img = loadImages.get(0);
+  frameRate(frameRateNum);
+}
+
+
+void draw(){
+  image(img, 0, 0);
+  count++;
+  img = loadImages.get(count);
+  if (count == maxLoadImgs){
+    count = -1;
+  }
+  
+}
+
+void keyReleased(){
+  if (key == 'a'){
+    if (frameRateNum != 1){
+      frameRateNum--;
+    }
+    frameRate(frameRateNum);
+  }
+  
+  if (key == 'd'){
+    frameRateNum++;
+    frameRate(frameRateNum);
+  }
+}
